@@ -20,7 +20,7 @@ public class CalculatorTest {
         calculator = Calculator.getInstance();
     }
 
-    //checking test cases for each method:
+    //checking test cases for each method
 
     @Test
     public void addition() {
@@ -63,13 +63,7 @@ public class CalculatorTest {
         assertEquals(100, calculator.getValue());
     }
 
-    @Test
-    public void getFileInstruction() throws FileNotFoundException {
-
-        //please provide the path for the txt file for me this is the absolute path:
-        File file = new File("/Users/aashish/Desktop/job/coding/src/test/java/com/example/coding/instructions.txt");
-        Scanner scanner = new Scanner(file);
-
+    public void operators (Scanner scanner , int expected){
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] parts = line.split(" ");
@@ -91,6 +85,35 @@ public class CalculatorTest {
         System.out.println("+++++++output+++++ ::" +calculator.getValue());
         scanner.close();
 
-        assertEquals(36, calculator.getValue());
+        assertEquals(expected, calculator.getValue());
+    }
+
+    @Test
+    public void getFileInstruction() throws FileNotFoundException {
+
+        //please provide the path for the txt file for me this is the absolute path:
+        File file = new File("/Users/aashish/Desktop/job/coding/src/test/java/com/example/coding/instructions.txt");
+        Scanner scanner = new Scanner(file);
+        operators(scanner, 36);
+    }
+
+    @Test
+    public void getFileInstruction1() throws FileNotFoundException {
+
+        //please provide the path for the txt file for me this is the absolute path:
+        File file = new File("/Users/aashish/Desktop/job/coding/src/test/java/com/example/coding/instruction1.txt");
+        Scanner scanner = new Scanner(file);
+        operators(scanner, 32);
+    }
+
+    @Test
+    public void getFileInstruction2() throws FileNotFoundException {
+
+        //please provide the path for the txt file for me this is the absolute path:
+        File file = new File("/Users/aashish/Desktop/job/coding/src/test/java/com/example/coding/instruction2.txt");
+        Scanner scanner = new Scanner(file);
+        operators(scanner, 1);
     }
 }
+
+
