@@ -1,9 +1,11 @@
 package com.example.coding;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.example.coding.calculator.Calculator;
@@ -64,12 +66,28 @@ public class CalculatorTest {
     }
 
     public void operators (Scanner scanner , int expected){
+        ArrayList<String> arrayList = new ArrayList();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
+            arrayList.add(line);
+            String[] parts = line.split(" ");
+            String operator = parts[0];
+            if (operator.equals("apply")) break;
+
+        }
+        System.out.println(arrayList);
+        String lastElemet = arrayList.get(arrayList.size() -1);
+        arrayList.add(0 , lastElemet);
+        System.out.println("aaaa"+arrayList);
+
+//        arrayList.set(0 , arrayList.get(arrayList.size() - 1));
+        arrayList.remove(arrayList.size()-1);
+        for (String line : arrayList){
+
+            System.out.println("----------"+ line);
             String[] parts = line.split(" ");
             String operator = parts[0];
             int number = Integer.parseInt(parts[1]);
-
             if (operator.equals("add")) {
                 calculator.add(number);
             } else if (operator.equals("subtract")) {
@@ -113,6 +131,22 @@ public class CalculatorTest {
         File file = new File("/Users/aashish/Desktop/job/coding/src/test/java/com/example/coding/instruction2.txt");
         Scanner scanner = new Scanner(file);
         operators(scanner, 1);
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+// add elements to the list
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+// get the last element
+        int lastElement = list.get(list.size()-1);
+        System.out.println(list);
+
+// add the last element to the 0th index
+        list.add(0, lastElement);
+        System.out.println("pppppppp"+list);
     }
 }
 
